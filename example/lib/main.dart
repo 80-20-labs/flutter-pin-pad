@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pinpad/numpad_controller.dart';
 import 'package:pinpad/numpad.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MyPinApp());
 
-class MyApp extends StatelessWidget {
+class MyPinApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: NumPad(
         /* numpad must always have a controller attached to it. */
         controller: npc,
+        pinInputLength: 4,
       ),
     ); 
   }

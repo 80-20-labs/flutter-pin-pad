@@ -132,6 +132,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
                           backKeyColor: widget.backKeyColor,
                           keyContentColor: widget.numPadContentColor,
                           pinInputController: widget.pinInputController,
+                          pinInputLength: widget.pinInputLength,
                           numPadController: widget.controller,
                         ),
                       )

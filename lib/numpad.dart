@@ -114,7 +114,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
                       /* Pin Input Field Container */
                       Container(
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
+                          padding: EdgeInsets.fromLTRB(0, 50, 0, 15),
                           child: Provider<vector_math.Vector3>.value(
                             value: _shake(),
                             child: PinInputField(

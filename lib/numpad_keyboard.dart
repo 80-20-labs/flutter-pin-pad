@@ -215,7 +215,7 @@ class NumPadKey extends StatelessWidget {
     var height = screenSize.height;
     double margin = 15.0;
 
-    var size = (height / 1.75 - 6 * height/15 - 35);
+    var size = (height / 10);
     return Container(
       child: FittedBox(
           fit: BoxFit.cover,

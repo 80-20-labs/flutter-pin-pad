@@ -9,7 +9,6 @@ class NumPadController extends ChangeNotifier {
 
   /* Shakes pin input field then clears once animation is done. */
   void wrongInputBehavior() {
-    print("wrong!");
     shakeAnimation.forward();
     // if (Vibration.hasVibrator() != null) {
     //   Vibration.vibrate();

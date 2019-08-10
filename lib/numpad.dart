@@ -45,16 +45,16 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
   /* Listeners */
   Function inputControllerListener, animControllerListener, animationStatusListener;
 
-  // @override
-  // dispose(){
-  //   SystemChrome.setPreferredOrientations([
-  //     DeviceOrientation.portraitUp
-  //   ]);
-  //   animationController.removeListener(animControllerListener);
-  //   inputController.removeListener(inputControllerListener);
-  //   //animation.removeListener(animationStatusListener);
-  //   super.dispose();
-  // }
+  @override
+  dispose(){
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+    ]);
+    animationController.removeListener(animControllerListener);
+    inputController.removeListener(inputControllerListener);
+    //animation.removeListener(animationStatusListener);
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -72,7 +72,6 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
         widget.controller.doneTyping = true;
       }
     };
-    animControllerListener = () => setState(() {});
     animationStatusListener = (AnimationStatus status) {
         if (status == AnimationStatus.completed) {
           widget.controller.doneTyping=false;
@@ -86,7 +85,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
     animationController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 300),
-    )..addListener(animControllerListener);
+    );
     animation = Tween<double>(
       begin: -10.0,
       end: 10.0,

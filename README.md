@@ -1,5 +1,5 @@
 # pin-pad
-simple, generic and oppinionated numpad meant for stylish pin inputs.
+simple, generic and opinionated numpad meant for stylish pin inputs.
 
 
 <img src="https://i.imgur.com/Uagsngc.gif" alt="video-example" width="200" />

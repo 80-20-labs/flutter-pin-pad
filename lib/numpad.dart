@@ -19,6 +19,7 @@ class NumPad extends StatefulWidget {
   final NumPadController controller;
   final backgroundColor, keyColor, clearKeyColor, backKeyColor, pinInputFieldColor, numPadContentColor;
   final int pinInputLength; // Limit how many characters can be typed.
+  final String pinPlaceholder;
 
   NumPad({
     @required this.controller,
@@ -29,6 +30,7 @@ class NumPad extends StatefulWidget {
     this.numPadContentColor = Colors.white,
     this.pinInputFieldColor = Colors.black,
     this.pinInputLength = 5,
+    this.pinPlaceholder,
   });
 
   @override
@@ -118,6 +120,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
                           child: Provider<vector_math.Vector3>.value(
                             value: _shake(),
                             child: PinInputField(
+                              placeholder: widget.pinPlaceholder,
                               color: widget.pinInputFieldColor,
                             )
                           ),

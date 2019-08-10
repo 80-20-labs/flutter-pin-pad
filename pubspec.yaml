@@ -24,13 +24,7 @@ dependencies:
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  cloud_firestore: ^0.9.0 # add this line
-  random_string: ^1.1.0
-  path_provider: ^1.2.0
   permission_handler: '^3.2.0'
-  hive: ^0.3.0+1
   provider: ^3.0.0+1
   vibration: ^1.2.1
 

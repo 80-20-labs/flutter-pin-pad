@@ -5,7 +5,7 @@ simple, generic and oppinionated numpad meant for stylish pin inputs.
 <img src="https://i.imgur.com/Uagsngc.gif" alt="video-example" width="200" />
 
 
-## importing
+## Importing
 in pubspec.yaml:
 ```yaml
 dependencies:
@@ -20,7 +20,7 @@ import 'package: pinpad/numpad.dart';
 import 'package: pinpad/numpad_controller.dart';
 ```
 
-# usage
+# Usage
 
 ## style parameters
 you can customize the look by passing the following parameters to NumPad():
@@ -35,7 +35,17 @@ you can customize the look by passing the following parameters to NumPad():
 |pinInputFieldColor | font color for the input field.                                                                 |
 |pinInputLength     | limit input length, defaults to 5.                                                              |
 
-### example code.
+## controller
+with the NumPadController object, you can add custom behaviors for what to do once you want to process the pin input. 
+
+| Type | Name | Description |
+| --- | --- | --- |
+| function | wrongInputBehavior() | Shakes pin input, also clears input field |
+| string | code | returns String for the content of the pin input code |
+| bool | doneTyping | returns true once the pin input field text has reached the pinInputLength set |
+
+
+## example code.
 full code implementation can be found at [example/lib/main.dart](https://github.com/80-20-labs/pin-pad/tree/master/example/lib).
 ```dart
 NumPadController npc = NumpadController();
@@ -59,13 +69,3 @@ return NumPad(
 
 ```
 
-## Getting Started
-
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.

@@ -106,9 +106,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
-    super.initState();
-    
+  Widget build(BuildContext context) {    
     return Scaffold(
         backgroundColor: widget.backgroundColor,
         body: Container(

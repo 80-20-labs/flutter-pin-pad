@@ -41,29 +41,39 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
 
   AnimationController animationController;
   Animation<double> animation;
+  TextEditingController inputController;
+  /* Listeners */
+  Function inputControllerListener, animControllerListener, animationStatusListener;
+
   @override
   dispose(){
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp
     ]);
+    animationController.removeListener(animControllerListener);
+    inputController.removeListener(inputControllerListener);
+    animation.removeListener(animationStatusListener);
     super.dispose();
   }
+
   @override
   void initState() {
     super.initState();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp
     ]);
+    int pinInputLength = widget.pinInputLength;
+    inputController = widget.pinInputController;
 
-    animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 300),
-    )..addListener(() => setState(() {}));
-    animation = Tween<double>(
-      begin: -10.0,
-      end: 10.0,
-    ).animate(animationController)
-      ..addStatusListener((AnimationStatus status) {
+    /* Listeners defs. */
+    inputControllerListener = () {
+      widget.controller.code = inputController.text;
+      if (inputController.text.length >= pinInputLength) {
+        widget.controller.doneTyping = true;
+      }
+    };
+    animControllerListener = () => setState(() {});
+    animationStatusListener = (AnimationStatus status) {
         if (status == AnimationStatus.completed) {
           widget.controller.doneTyping=false;
 
@@ -72,17 +82,17 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
 
           widget.controller.code = widget.pinInputController.text;
         }
-      });
-    /* Local reference to the global text editing controller. */
-    TextEditingController inputController = widget.pinInputController;
-    int pinInputLength = widget.pinInputLength;
-
-    inputController.addListener(() {
-      widget.controller.code = inputController.text;
-      if (inputController.text.length >= pinInputLength) {
-        widget.controller.doneTyping = true;
-      };
-    });
+    };
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 300),
+    )..addListener(animControllerListener);
+    animation = Tween<double>(
+      begin: -10.0,
+      end: 10.0,
+    ).animate(animationController)
+      ..addStatusListener(animationStatusListener);
+    inputController.addListener(inputControllerListener);
 
     NumPadController.shakeAnimation = animationController;
   }

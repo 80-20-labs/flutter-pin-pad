@@ -5,11 +5,12 @@ import 'package:vibration/vibration.dart';
 class NumPadController extends ChangeNotifier {
   bool _doneTyping = false;
   String _code;
-  static AnimationController shakeAnimation;
+  static AnimationController _shakeAnimation;
+  static set shakeAnimation(anim) => _shakeAnimation = anim;
 
   /* Shakes pin input field then clears once animation is done. */
   void wrongInputBehavior() {
-    shakeAnimation.forward();
+    _shakeAnimation.forward();
     // if (Vibration.hasVibrator() != null) {
     //   Vibration.vibrate();
     // }

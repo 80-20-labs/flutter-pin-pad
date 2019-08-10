@@ -11,9 +11,9 @@ class NumPadController extends ChangeNotifier {
   void wrongInputBehavior() {
     print("wrong!");
     shakeAnimation.forward();
-    if (Vibration.hasVibrator() != null) {
-      Vibration.vibrate();
-    }
+    // if (Vibration.hasVibrator() != null) {
+    //   Vibration.vibrate();
+    // }
   }
 
   set code(code) {

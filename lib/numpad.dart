@@ -84,7 +84,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
       };
     });
 
-    widget.controller.shakeAnimation = animationController;
+    NumPadController.shakeAnimation = animationController;
   }
   vector_math.Vector3 _shake() {
     double progress = animationController.value;

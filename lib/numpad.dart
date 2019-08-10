@@ -58,6 +58,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
+    print("initializing numpad");
     super.initState();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp

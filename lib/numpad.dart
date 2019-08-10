@@ -46,32 +46,20 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
   Function inputControllerListener, animControllerListener, animationStatusListener;
 
   @override
-  dispose(){
+  deactivate(){
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp
     ]);
     animationController.removeListener(animControllerListener);
     inputController.removeListener(inputControllerListener);
     //animation.removeListener(animationStatusListener);
-    super.dispose();
+    super.deactivate();
   }
 
   @override
   void initState() {
     print("initializing numpad");
     super.initState();
-    
-  }
-  vector_math.Vector3 _shake() {
-    double progress = animationController.value;
-    double offset = sin(progress * pi * 800000.0);
-    offset = double.parse(offset.toStringAsFixed(2));
-
-    return vector_math.Vector3(offset * 10, 0.0, 0.0);
-  }
-
-  @override
-  Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp
     ]);
@@ -108,7 +96,19 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
     inputController.addListener(inputControllerListener);
 
     NumPadController.shakeAnimation = animationController;
+  }
+  vector_math.Vector3 _shake() {
+    double progress = animationController.value;
+    double offset = sin(progress * pi * 800000.0);
+    offset = double.parse(offset.toStringAsFixed(2));
 
+    return vector_math.Vector3(offset * 10, 0.0, 0.0);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.initState();
+    
     return Scaffold(
         backgroundColor: widget.backgroundColor,
         body: Container(

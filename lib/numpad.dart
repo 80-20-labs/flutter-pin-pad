@@ -44,10 +44,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
   @override
   dispose(){
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp
     ]);
     super.dispose();
   }

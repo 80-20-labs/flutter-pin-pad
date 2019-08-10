@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:vibration/vibration.dart';
+// import 'package:vibration/vibration.dart';
 
 class NumPadController extends ChangeNotifier {
   bool _doneTyping = false;
@@ -8,6 +8,7 @@ class NumPadController extends ChangeNotifier {
   static AnimationController _shakeAnimation;
   static set shakeAnimation(anim) => _shakeAnimation = anim;
   static AnimationController get shakeAnimation => _shakeAnimation;
+  
   /* Shakes pin input field then clears once animation is done. */
   void wrongInputBehavior() {
     _shakeAnimation.forward();

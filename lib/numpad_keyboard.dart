@@ -163,7 +163,7 @@ class NumPadKeyboard extends StatelessWidget {
                   keyContentColor:
                       keyContentColor,
                   onPressed: () {
-                    numPadController.shakeAnimation.forward();
+                    NumPadController.shakeAnimation.forward();
                     pinInputController.clear();
                   }),
             ],

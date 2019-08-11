@@ -60,7 +60,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
   @override 
   void dispose() {
     animationController.dispose();
-    super.dispose();
+    //super.dispose();
   }
 
   @override

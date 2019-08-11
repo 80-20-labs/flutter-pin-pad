@@ -45,19 +45,22 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
   /* Listeners */
   Function inputControllerListener, animControllerListener, animationStatusListener;
 
-  @override
-  deactivate(){
-    print("deactivating");
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp
-    ]);
-    animationController.removeListener(animControllerListener);
-    inputController.removeListener(inputControllerListener);
-    animation.removeStatusListener(animationStatusListener);
-
-
+  // @override
+  // deactivate(){
+  //   print("deactivating");
+  //   SystemChrome.setPreferredOrientations([
+  //     DeviceOrientation.portraitUp
+  //   ]);
+  //   animationController.removeListener(animControllerListener);
+  //   inputController.removeListener(inputControllerListener);
+  //   animation.removeStatusListener(animationStatusListener);
     
-    super.deactivate();
+  //   super.deactivate();
+  // }
+  @override 
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   @override

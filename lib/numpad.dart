@@ -52,11 +52,11 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
     ]);
     animationController.removeListener(animControllerListener);
     inputController.removeListener(inputControllerListener);
-    animation.removeListener(animationStatusListener);
+    animation.removeStatusListener(animationStatusListener);
+
 
     
     this.deactivate();
-    super.dispose();
     super.deactivate();
   }
 

@@ -57,11 +57,11 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
     
   //   super.deactivate();
   // }
-  @override 
-  void deactivate() {
-    animationController.dispose();
-    super.deactivate();
-  }
+  // @override 
+  // void deactivate() {
+  //   animationController.dispose();
+  //   super.deactivate();
+  // }
 
   @override
   void initState() {

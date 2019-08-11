@@ -56,6 +56,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
 
     
     this.deactivate();
+    super.dispose();
     super.deactivate();
   }
 

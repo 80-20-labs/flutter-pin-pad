@@ -77,7 +77,9 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
         widget.controller.doneTyping = true;
       }
     };
-    animControllerListener = () => setState(() {});
+    animControllerListener = () {
+       if(mounted) setState(() {});
+    };
     animationStatusListener = (AnimationStatus status) {
         if (status == AnimationStatus.completed) {
           widget.controller.doneTyping=false;

@@ -51,8 +51,8 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
       DeviceOrientation.portraitUp
     ]);
     animation.removeListener(animationStatusListener);
-    animationController.dispose();
-    inputController.dispose();
+    animationController.removeListener(animControllerListener);
+    inputController.removeListener(inputControllerListener);
     
     this.deactivate();
     super.deactivate();

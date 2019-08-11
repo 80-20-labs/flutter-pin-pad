@@ -47,6 +47,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
 
   @override
   deactivate(){
+    print("deactivating");
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp
     ]);

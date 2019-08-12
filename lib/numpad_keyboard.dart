@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import './numpad_controller.dart';
 
 class NumPadKeyboard extends StatelessWidget {
-  var clearKeyColor, backKeyColor, keyColor, keyContentColor;
+  var clearKeyBackgroundColor, backKeyBackgroundColor, keyColor, keyContentColor;
+  var backKeyFontColor, clearKeyFontColor;
   final int pinInputLength;
   final TextEditingController pinInputController;
   final NumPadController numPadController;
 
   NumPadKeyboard({
     this.pinInputLength = 5,
-    this.clearKeyColor, this.backKeyColor = Colors.black38,
+    this.clearKeyBackgroundColor, this.backKeyBackgroundColor = Colors.black38,
     this.keyColor=Colors.black26,
     this.keyContentColor=Colors.white,
+    this.backKeyFontColor=Colors.white, this.clearKeyFontColor=Colors.white,
     @required this.pinInputController, this.numPadController,
   });
   
@@ -26,7 +28,7 @@ class NumPadKeyboard extends StatelessWidget {
             children: <Widget>[
               NumPadKey(
                 digit: '1',
-                keyColor: keyColor,
+                keyBackgrounColor: keyColor,
                 keyContentColor: keyContentColor,
                 onPressed: () {
                     if (pinInputController.text.length < pinInputLength) 
@@ -35,7 +37,7 @@ class NumPadKeyboard extends StatelessWidget {
               ),
               NumPadKey(
                 digit: '2',
-                keyColor: keyColor,
+                keyBackgrounColor: keyColor,
                 keyContentColor: keyContentColor,
                 onPressed: () {
                     if (pinInputController.text.length < pinInputLength)
@@ -44,7 +46,7 @@ class NumPadKeyboard extends StatelessWidget {
               ),
               NumPadKey(
                 digit: '3',
-                keyColor: keyColor,
+                keyBackgrounColor: keyColor,
                 keyContentColor: keyContentColor,
                 onPressed: () {
                     if (pinInputController.text.length < pinInputLength)
@@ -61,7 +63,7 @@ class NumPadKeyboard extends StatelessWidget {
             children: <Widget>[
               NumPadKey(
                 digit: '4',
-                keyColor: keyColor,
+                keyBackgrounColor: keyColor,
                 keyContentColor: keyContentColor,
                 onPressed: () {
                     if (pinInputController.text.length < pinInputLength)
@@ -70,7 +72,7 @@ class NumPadKeyboard extends StatelessWidget {
               ),
               NumPadKey(
                 digit: '5',
-                keyColor: keyColor,
+                keyBackgrounColor: keyColor,
                 keyContentColor: keyContentColor,
                 onPressed: () {
                     if (pinInputController.text.length < pinInputLength)
@@ -79,7 +81,7 @@ class NumPadKeyboard extends StatelessWidget {
               ),
               NumPadKey(
                 digit: '6',
-                keyColor: keyColor,
+                keyBackgrounColor: keyColor,
                 keyContentColor: keyContentColor,
                 onPressed: () {
                     if (pinInputController.text.length < pinInputLength)
@@ -96,7 +98,7 @@ class NumPadKeyboard extends StatelessWidget {
             children: <Widget>[
               NumPadKey(
                 digit: '7',
-                keyColor: keyColor,
+                keyBackgrounColor: keyColor,
                 keyContentColor: keyContentColor,
                 onPressed: () {
                     if (pinInputController.text.length < pinInputLength)
@@ -105,7 +107,7 @@ class NumPadKeyboard extends StatelessWidget {
               ),
               NumPadKey(
                 digit: '8',
-                keyColor: keyColor,
+                keyBackgrounColor: keyColor,
                 keyContentColor: keyContentColor,
                 onPressed: () {
                     if (pinInputController.text.length < pinInputLength)
@@ -114,7 +116,7 @@ class NumPadKeyboard extends StatelessWidget {
               ),
               NumPadKey(
                 digit: '9',
-                keyColor: keyColor,
+                keyBackgrounColor: keyColor,
                 keyContentColor: keyContentColor,
                 onPressed: () {
                     if (pinInputController.text.length < pinInputLength)
@@ -133,10 +135,9 @@ class NumPadKeyboard extends StatelessWidget {
                   digit: Icon(
                     Icons.backspace,
                     size: 20,
-                    color: Colors.white,
+                    color: backKeyFontColor,
                   ),
-                  keyColor: backKeyColor,
-                  keyContentColor: keyContentColor,
+                  keyBackgrounColor: backKeyBackgroundColor,
                   onPressed: () {
                     String text =
                         pinInputController.text;
@@ -146,7 +147,7 @@ class NumPadKeyboard extends StatelessWidget {
               }),
               NumPadKey(
                 digit: '0',
-                keyColor: keyColor,
+                keyBackgrounColor: keyColor,
                 keyContentColor: keyContentColor,
                 onPressed: () {
                     if (pinInputController.text.length < pinInputLength)
@@ -157,11 +158,9 @@ class NumPadKeyboard extends StatelessWidget {
                   digit: Icon(
                     Icons.clear,
                     size: 20,
-                    color: Colors.white,
+                    color: clearKeyFontColor,
                   ),
-                  keyColor: clearKeyColor,
-                  keyContentColor:
-                      keyContentColor,
+                  keyBackgrounColor: clearKeyBackgroundColor,
                   onPressed: () {
                     NumPadController.shakeAnimation.forward();
                     pinInputController.clear();
@@ -202,11 +201,11 @@ class NumPadKeyContent extends StatelessWidget {
 
 class NumPadKey extends StatelessWidget {
   var digit;
-  var keyColor, keyContentColor;
+  var keyBackgrounColor, keyContentColor;
   final Function onPressed;
 
   NumPadKey(
-      {this.digit, this.keyColor, this.keyContentColor, this.onPressed});
+      {this.digit, this.keyBackgrounColor, this.keyContentColor, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -221,7 +220,7 @@ class NumPadKey extends StatelessWidget {
           fit: BoxFit.cover,
           child: FlatButton(
             padding: EdgeInsets.all(margin),
-            color: keyColor,
+            color: keyBackgrounColor,
             shape: CircleBorder(),
             child: NumPadKeyContent(content: digit, color: keyContentColor),
             /* Append new digit to current text string. */

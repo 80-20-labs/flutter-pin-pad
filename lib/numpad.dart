@@ -17,7 +17,11 @@ class NumPad extends StatefulWidget {
 
   /* Constructor Parameters. */
   final NumPadController controller;
-  final backgroundColor, keyColor, clearKeyColor, backKeyColor, pinInputFieldColor, numPadContentColor;
+
+  final backgroundColor, keyColor, clearKeyBackgroundColor;
+  final backKeyBackgroundColor, pinInputFieldColor, numPadContentColor;
+  final backKeyFontColor, clearKeyFontColor, pinPlaceholderColor;
+
   final int pinInputLength; // Limit how many characters can be typed.
   final String pinPlaceholder;
 
@@ -25,12 +29,15 @@ class NumPad extends StatefulWidget {
     @required this.controller,
     this.backgroundColor = Colors.blue,
     this.keyColor = Colors.black26,
-    this.clearKeyColor = Colors.black38,
-    this.backKeyColor = Colors.black38,
+    this.clearKeyBackgroundColor = Colors.black38,
+    this.clearKeyFontColor = Colors.white,
+    this.backKeyBackgroundColor = Colors.black38,
+    this.backKeyFontColor = Colors.white,
     this.numPadContentColor = Colors.white,
     this.pinInputFieldColor = Colors.black,
     this.pinInputLength = 5,
-    this.pinPlaceholder,
+    this.pinPlaceholder = "PIN",
+    this.pinPlaceholderColor,
   });
 
   @override
@@ -129,6 +136,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
                             value: _shake(),
                             child: PinInputField(
                               placeholder: widget.pinPlaceholder,
+                              placeholderColor: widget.pinPlaceholderColor,
                               color: widget.pinInputFieldColor,
                             )
                           ),
@@ -139,8 +147,10 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: NumPadKeyboard(
                           keyColor: widget.keyColor,
-                          clearKeyColor: widget.clearKeyColor,
-                          backKeyColor: widget.backKeyColor,
+                          clearKeyBackgroundColor: widget.clearKeyBackgroundColor,
+                          backKeyBackgroundColor: widget.backKeyBackgroundColor,
+                          backKeyFontColor: widget.backKeyFontColor,
+                          clearKeyFontColor: widget.clearKeyFontColor,
                           keyContentColor: widget.numPadContentColor,
                           pinInputController: widget.pinInputController,
                           pinInputLength: widget.pinInputLength,

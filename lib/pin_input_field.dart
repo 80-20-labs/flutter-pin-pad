@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:vector_math/vector_math_64.dart' as vector_math;
 
 class PinInputField extends StatelessWidget {
-  var color;
+  var color, placeholderColor;
   final String placeholder;
 
-  PinInputField({this.color, this.placeholder});
+  PinInputField({this.color, this.placeholder, this.placeholderColor});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,7 @@ class PinInputField extends StatelessWidget {
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: placeholder,
+            hintStyle: TextStyle(color: placeholderColor)
           ),
         ),
       ),

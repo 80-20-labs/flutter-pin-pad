@@ -29,11 +29,15 @@ you can customize the look by passing the following parameters to NumPad():
 | ----------------- | ----------------------------------------------------------------------------------------------- |
 |backgroundColor    | self explanatory.                                                                               |
 |keyColor           | color of each individual regular key (doesn't include backspace or clear).                      |
-|clearKeyColor      | color for the clear button.                                                                     |
-|backKeyColor       | color for the backspace button.                                                                 |
-|numPadContentColor | font color of the key content (number or icon).                                                 |
+|clearKeyBackgroundColor      | background color for the clear button.                                                                     |
+|clearKeyFontColor | font color for clear key. |
+|backKeyBackgroundColor       | background color for the backspace button.|
+|backKeyFontColor | font color for the backspace key. |
+|numPadFontColor | font color of the number keys.                                                 |
 |pinInputFieldColor | font color for the input field.                                                                 |
 |pinInputLength     | limit input length, defaults to 5.                                                              |
+|pinPlaceholder | customize placeholder text for the input field, defaults to "PIN" |
+|pinPlaceholderColor | font color for the placeholder text |
 
 ## controller
 with the NumPadController object, you can add custom behaviors for what to do once you want to process the pin input. 

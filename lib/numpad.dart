@@ -119,7 +119,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
         body: Container(
           /* Input text field at the top where the PIN input is displayed. */
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 70),
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
             child: ListenableProvider<TextEditingController>.value(
                 value: widget.pinInputController,
                 child: Center(

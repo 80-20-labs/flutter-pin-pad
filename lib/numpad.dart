@@ -9,8 +9,6 @@ import './pin_input_field.dart';
 import './numpad_keyboard.dart';
 import './numpad_controller.dart';
 
-
-
 /* Numpad widget */
 class NumPad extends StatefulWidget {
   final TextEditingController pinInputController = TextEditingController();
@@ -26,7 +24,7 @@ class NumPad extends StatefulWidget {
   final String pinPlaceholder;
 
   NumPad({
-    @required this.controller,
+    required this.controller,
     this.backgroundColor = Colors.blue,
     this.keyColor = Colors.black26,
     this.clearKeyBackgroundColor = Colors.black38,
@@ -45,20 +43,20 @@ class NumPad extends StatefulWidget {
 }
 
 class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
-
-  AnimationController animationController;
-  Animation<double> animation;
-  TextEditingController inputController;
+  AnimationController? animationController;
+  Animation<double>? animation;
+  late TextEditingController inputController;
   /* Listeners */
-  Function inputControllerListener, animControllerListener, animationStatusListener;
+  late Function inputControllerListener,
+      animControllerListener,
+      animationStatusListener;
 
   @override
-  dispose(){
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp
-    ]);
-    animationController.removeListener(animControllerListener);
-    inputController.removeListener(inputControllerListener);
+  dispose() {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    animationController!
+        .removeListener(animControllerListener as void Function());
+    inputController.removeListener(inputControllerListener as void Function());
     //animation.removeListener(animationStatusListener);
     super.dispose();
   }
@@ -67,9 +65,7 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
   void initState() {
     print("initializing numpad");
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp
-    ]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     int pinInputLength = widget.pinInputLength;
     inputController = widget.pinInputController;
 
@@ -82,30 +78,32 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
     };
     animControllerListener = () => setState(() {});
     animationStatusListener = (AnimationStatus status) {
-        if (status == AnimationStatus.completed) {
-          widget.controller.doneTyping=false;
+      if (status == AnimationStatus.completed) {
+        widget.controller.doneTyping = false;
 
-          animationController.reset();
-          widget.pinInputController.clear();
+        animationController!.reset();
+        widget.pinInputController.clear();
 
-          widget.controller.code = widget.pinInputController.text;
-        }
+        widget.controller.code = widget.pinInputController.text;
+      }
     };
     animationController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 300),
-    )..addListener(animControllerListener);
+    )..addListener(animControllerListener as void Function());
     animation = Tween<double>(
       begin: -10.0,
       end: 10.0,
-    ).animate(animationController)
-      ..addStatusListener(animationStatusListener);
-    inputController.addListener(inputControllerListener);
+    ).animate(animationController!)
+      ..addStatusListener(
+          animationStatusListener as void Function(AnimationStatus));
+    inputController.addListener(inputControllerListener as void Function());
 
     NumPadController.shakeAnimation = animationController;
   }
+
   vector_math.Vector3 _shake() {
-    double progress = animationController.value;
+    double progress = animationController!.value;
     double offset = sin(progress * pi * 800000.0);
     offset = double.parse(offset.toStringAsFixed(2));
 
@@ -113,57 +111,52 @@ class _NumPadState extends State<NumPad> with SingleTickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: widget.backgroundColor,
-        body: Container(
-          /* Input text field at the top where the PIN input is displayed. */
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
-            child: ListenableProvider<TextEditingController>.value(
-                value: widget.pinInputController,
-                child: Center(
-                  
-                  child: Column(
-                    
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      /* Pin Input Field Container */
-                      Container(
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(0, 50, 0, 15),
-                          child: Provider<vector_math.Vector3>.value(
-                            value: _shake(),
-                            child: PinInputField(
-                              placeholder: widget.pinPlaceholder,
-                              placeholderColor: widget.pinPlaceholderColor,
-                              color: widget.pinInputFieldColor,
-                            )
-                          ),
-                        )
-                      ),
-                      /* Numpad Keyboard Container. */
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        child: NumPadKeyboard(
-                          keyColor: widget.keyColor,
-                          clearKeyBackgroundColor: widget.clearKeyBackgroundColor,
-                          backKeyBackgroundColor: widget.backKeyBackgroundColor,
-                          backKeyFontColor: widget.backKeyFontColor,
-                          clearKeyFontColor: widget.clearKeyFontColor,
-                          keyFontColor: widget.numPadFontColor,
-                          pinInputController: widget.pinInputController,
-                          pinInputLength: widget.pinInputLength,
-                          numPadController: widget.controller,
-                        ),
-                      )
-                    ],
-                )
-              )
-            )
-          )
-      )
+      backgroundColor: widget.backgroundColor,
+      body: Container(
+        /* Input text field at the top where the PIN input is displayed. */
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+          child: ListenableProvider<TextEditingController>.value(
+            value: widget.pinInputController,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  /* Pin Input Field Container */
+                  Container(
+                      child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 50, 0, 15),
+                    child: Provider<vector_math.Vector3>.value(
+                        value: _shake(),
+                        child: PinInputField(
+                          placeholder: widget.pinPlaceholder,
+                          placeholderColor: widget.pinPlaceholderColor,
+                          color: widget.pinInputFieldColor,
+                        )),
+                  )),
+                  /* Numpad Keyboard Container. */
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: NumPadKeyboard(
+                      keyColor: widget.keyColor,
+                      clearKeyBackgroundColor: widget.clearKeyBackgroundColor,
+                      backKeyBackgroundColor: widget.backKeyBackgroundColor,
+                      backKeyFontColor: widget.backKeyFontColor,
+                      clearKeyFontColor: widget.clearKeyFontColor,
+                      keyFontColor: widget.numPadFontColor,
+                      pinInputController: widget.pinInputController,
+                      pinInputLength: widget.pinInputLength,
+                      numPadController: widget.controller,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
-

@@ -16,7 +16,7 @@ class MyPinApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -42,11 +42,20 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: NumPad(
-        /* numpad must always have a controller attached to it. */
-        controller: npc,
-        pinInputLength: 4,
+      color: Colors.orange,
+      child: Column(
+        children: [
+          //SizedBox(height: 100),
+          Expanded(
+            child: NumPad(
+              /* numpad must always have a controller attached to it. */
+              backgroundColor: Colors.white.withOpacity(0.6),
+              controller: npc,
+              pinInputLength: 4,
+            ),
+          ),
+        ],
       ),
-    ); 
+    );
   }
 }
